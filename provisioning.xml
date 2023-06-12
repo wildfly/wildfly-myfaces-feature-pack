@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<installation xmlns="urn:jboss:galleon:provisioning:3.0">
+  <feature-pack location="org.wildfly:wildfly-galleon-pack:29.0.0.Beta1-SNAPSHOT">
+    <default-configs inherit="false"/>
+    <packages inherit="false"/>
+  </feature-pack>
+  <feature-pack location="org.wildfly:wildfly-myfaces-galleon-pack:1.0.0-SNAPSHOT">
+    <default-configs inherit="false"/>
+    <packages inherit="false"/>
+  </feature-pack>
+  <config model="standalone" name="standalone.xml">
+    <layers>
+      <!-- Base layer -->
+      <include name="management"/>
+      <include name="myfaces"/>
+    </layers>
+  </config>
+  <options>
+    <option name="optional-packages" value="passive+"/>
+    <option name="jboss-fork-embedded" value="true"/>
+  </options>
+</installation>
