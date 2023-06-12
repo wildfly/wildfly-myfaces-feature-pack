@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2023 Red Hat, Inc. and/or its affiliates
+    and other contributors as indicated by the @author tags.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.wildfly</groupId>
+        <artifactId>wildfly-myfaces-galleon-pack-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>wildfly-myfaces-galleon-pack-testsuite-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>MyFaces 4 Support for WildFly - Testsuite Parent</name>
+    <description>MyFaces 4 Support for WildFly - Testsuite Parent</description>
+
+    <properties>
+        <test.bootable.jar.name>test-wildfly-myfaces.jar</test.bootable.jar.name>
+<!--        <test.preview.bootable.jar.name>test-wildfly-myfaces-preview.jar</test.preview.bootable.jar.name>-->
+        <testLogToFile>true</testLogToFile>
+        <node0>127.0.0.1</node0>
+        <management.address>${node0}</management.address>
+        <plugin.fork.embedded>true</plugin.fork.embedded>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <failIfNoTests>false</failIfNoTests>
+                    <redirectTestOutputToFile>${testLogToFile}</redirectTestOutputToFile>
+                    <systemPropertyVariables>
+                        <wildfly.bootable.jar>true</wildfly.bootable.jar>
+                        <management.address>${management.address}</management.address>
+                        <jboss.args>${jboss.args}</jboss.args>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    
+    <modules>
+        <module>bootablejar</module>
+    </modules>
+</project>
