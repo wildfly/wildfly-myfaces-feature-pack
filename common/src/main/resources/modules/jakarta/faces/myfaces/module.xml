@@ -51,8 +51,4 @@
         <module name="org.jboss.weld.core"/>
         <module name="org.jboss.weld.spi"/>
     </dependencies>
-
-    <resources>
-        <artifact name="${org.apache.myfaces.core:myfaces-impl}"/>
-    </resources>
 </module>

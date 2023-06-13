@@ -9,13 +9,13 @@
         <param name="default-jsf-impl-slot" value="myfaces"/>
     </feature>
 
-    <packages>
 <!--
+    <packages>
         <package name="jakarta.faces"/>
         <package name="jakarta.faces.api"/>
 
         <package name="org.apache.myfaces.core.api"/>
         <package name="org.apache.myfaces.core.impl"/>
--->
     </packages>
+st-->
 </layer-spec>
