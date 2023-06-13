@@ -22,37 +22,40 @@
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
 
-<module xmlns="urn:jboss:module:1.9" name="jakarta.faces:myfaces">
+<module xmlns="urn:jboss:module:1.9" name="org.jboss.as.jsf-injection:myfaces">
     <properties>
         <property name="jboss.api" value="private"/>
     </properties>
 
     <resources>
-        <artifact name="${org.apache.myfaces.core:myfaces-impl}"/>
+        <artifact name="${org.wildfly:myfaces-injection}"/>
+
+        <resource-root path="myfaces-injection-${project.version}.jar"/>
+        <!--
+                <resource-root path="weld-jsf-${version.org.jboss.weld.weld}.jar"/>
+        -->
     </resources>
 
     <dependencies>
-        <module name="jakarta.faces.api:myfaces">
-            <imports>
-                <include path="META-INF/**"/>
-            </imports>
-        </module>
-        <module name="jakarta.annotation.api"/>
-        <module name="jakarta.ejb.api"/>
-        <module name="jakarta.enterprise.api"/>
-        <module name="jakarta.json.api"/>
-        <module name="jakarta.servlet.api"/>
-        <module name="jakarta.servlet.jsp.api"/>
-        <module name="jakarta.servlet.jstl.api"/>
-        <module name="jakarta.validation.api"/>
-        <module name="jakarta.websocket.api" />
-        <module name="jakarta.xml.bind.api"/>
+        <module name="jakarta.faces:myfaces"/>
+        <module name="jakarta.faces.api:myfaces"/>
 
-        <module name="java.logging"/>
+        <module name="jakarta.enterprise.api"/>
+        <module name="jakarta.servlet.api"/>
+        <module name="java.desktop"/>
+        <module name="java.naming"/>
+        <module name="org.jboss.as.ee"/>
+        <module name="org.jboss.as.jsf"/>
+        <module name="org.jboss.as.web-common"/>
         <module name="org.jboss.logging"/>
-        <module name="org.glassfish.jakarta.el"/>
-        <module name="org.jboss.weld.api" />
         <module name="org.jboss.weld.core"/>
-        <module name="org.jboss.weld.spi"/>
+        <module name="org.jboss.weld.api"/>
+        <module name="org.wildfly.security.elytron"/>
     </dependencies>
+
+    <provides>
+        <service name="jakarta.servlet.ServletContainerInitializer">
+            <with-class name="org.jboss.as.jsf.injection.MyFacesContainerInitializer"/>
+        </service>
+    </provides>
 </module>
