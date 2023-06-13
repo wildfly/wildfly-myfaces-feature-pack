@@ -31,9 +31,6 @@
         <artifact name="${org.wildfly:myfaces-injection}"/>
 
         <resource-root path="myfaces-injection-${project.version}.jar"/>
-        <!--
-                <resource-root path="weld-jsf-${version.org.jboss.weld.weld}.jar"/>
-        -->
     </resources>
 
     <dependencies>
@@ -42,20 +39,21 @@
 
         <module name="jakarta.enterprise.api"/>
         <module name="jakarta.servlet.api"/>
-        <module name="java.desktop"/>
+        <module name="java.logging"/>
         <module name="java.naming"/>
+
         <module name="org.jboss.as.ee"/>
         <module name="org.jboss.as.jsf"/>
         <module name="org.jboss.as.web-common"/>
         <module name="org.jboss.logging"/>
-        <module name="org.jboss.weld.core"/>
         <module name="org.jboss.weld.api"/>
+        <module name="org.jboss.weld.core"/>
         <module name="org.wildfly.security.elytron"/>
     </dependencies>
 
     <provides>
         <service name="jakarta.servlet.ServletContainerInitializer">
-            <with-class name="org.jboss.as.jsf.injection.MyFacesContainerInitializer"/>
+            <with-class name="org.jboss.as.jsf.myfaces.injection.MyFacesContainerInitializer"/>
         </service>
     </provides>
 </module>

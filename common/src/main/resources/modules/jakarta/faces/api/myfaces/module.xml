@@ -32,15 +32,25 @@
     </resources>
 
     <dependencies>
-        <module name="jakarta.enterprise.api"/>
+        <module name="jakarta.enterprise.api" export="true"/>
+        <module name="jakarta.servlet.api" export="true"/>
+        <module name="jakarta.servlet.jsp.api" export="true"/>
+        <module name="jakarta.servlet.jstl.api" export="true"/>
+        <module name="jakarta.validation.api" export="true"/>
+
         <module name="jakarta.faces:myfaces"/>
-        <module name="jakarta.servlet.api"/>
+
+        <module name="java.desktop"/>
+        <module name="java.logging"/>
+        <module name="java.naming"/>
 
         <module name="org.jboss.as.ee"/>
         <module name="org.jboss.as.jsf"/>
         <module name="org.jboss.as.web-common"/>
         <module name="org.jboss.logging"/>
+        <module name="org.jboss.weld.api"/>
         <module name="org.jboss.weld.core"/>
+        <module name="org.jboss.weld.spi"/>
         <module name="org.wildfly.security.elytron"/>
     </dependencies>
 </module>

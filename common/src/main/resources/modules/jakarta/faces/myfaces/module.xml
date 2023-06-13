@@ -37,6 +37,7 @@
                 <include path="META-INF/**"/>
             </imports>
         </module>
+
         <module name="jakarta.annotation.api"/>
         <module name="jakarta.ejb.api"/>
         <module name="jakarta.enterprise.api"/>
@@ -44,11 +45,15 @@
         <module name="jakarta.servlet.api"/>
         <module name="jakarta.servlet.jsp.api"/>
         <module name="jakarta.servlet.jstl.api"/>
-        <module name="jakarta.validation.api"/>
+        <module name="jakarta.validation.api" export="true"/>
         <module name="jakarta.websocket.api" />
         <module name="jakarta.xml.bind.api"/>
 
+        <module name="java.desktop"/>
         <module name="java.logging"/>
+        <module name="java.naming"/>
+        <module name="java.xml"/>
+
         <module name="org.jboss.logging"/>
         <module name="org.glassfish.jakarta.el"/>
         <module name="org.jboss.weld.api" />

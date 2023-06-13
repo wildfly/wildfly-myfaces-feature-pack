@@ -24,7 +24,6 @@ package org.jboss.as.jsf.myfaces.injection;
 
 import jakarta.faces.context.ExternalContext;
 import org.apache.myfaces.spi.AnnotationProvider;
-import org.jboss.as.jsf.injection.AnnotationMap;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

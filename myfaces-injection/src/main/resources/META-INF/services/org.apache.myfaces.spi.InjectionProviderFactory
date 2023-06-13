@@ -1,1 +1,1 @@
-org.jboss.as.jsf.injection.MyFacesInjectionProviderFactory
+org.jboss.as.jsf.myfaces.injection.MyFacesInjectionProviderFactory
