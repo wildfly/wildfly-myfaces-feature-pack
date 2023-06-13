@@ -22,12 +22,13 @@
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
 
-<module xmlns="urn:jboss:module:1.9" name="jakarta.faces.api">
+<module xmlns="urn:jboss:module:1.9" name="jakarta.faces.api:myfaces">
     <properties>
         <property name="jboss.api" value="private"/>
     </properties>
 
     <resources>
+        <artifact name="${org.apache.myfaces.core:myfaces-api}"/>
         <artifact name="${org.wildfly:wildfly-jsf-injection}"/>
         <artifact name="${org.jboss.weld.module:weld-jsf}"/>
     </resources>

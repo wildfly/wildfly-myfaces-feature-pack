@@ -22,10 +22,14 @@
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
 
-<module xmlns="urn:jboss:module:1.9" name="jakarta.faces">
+<module xmlns="urn:jboss:module:1.9" name="jakarta.faces:myfaces">
     <properties>
         <property name="jboss.api" value="private"/>
     </properties>
+
+    <resources>
+        <artifact name="${org.apache.myfaces.core:myfaces-impl}"/>
+    </resources>
 
     <dependencies>
         <module name="jakarta.faces.api:myfaces">

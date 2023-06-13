@@ -10,10 +10,12 @@
     </feature>
 
     <packages>
+<!--
         <package name="jakarta.faces"/>
         <package name="jakarta.faces.api"/>
 
         <package name="org.apache.myfaces.core.api"/>
         <package name="org.apache.myfaces.core.impl"/>
+-->
     </packages>
 </layer-spec>
