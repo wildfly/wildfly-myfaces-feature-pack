@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module xmlns="urn:jboss:module:1.9" name="org.apache.myfaces.core.api">
-    <resources>
-        <artifact name="${org.apache.myfaces.core:myfaces-api}"/>
-    </resources>
-</module>
