@@ -23,7 +23,7 @@
         <version>39</version>
     </parent>
     <groupId>org.wildfly</groupId>
-    <artifactId>wildfly-myfaces-galleon-pack-parent</artifactId>
+    <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>MyFaces 4 Support for WildFly - Parent</name>
@@ -42,15 +42,18 @@
         <!-- Require Java 11 -->
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
-        <version.org.apache.myfaces>4.0.1</version.org.apache.myfaces>
+
         <version.junit>4.13.2</version.junit>
-        <version.org.wildfly>29.0.0.Beta1-SNAPSHOT</version.org.wildfly>
-        <version.org.wildfly.core>21.0.0.Beta2</version.org.wildfly.core>
+        <version.org.apache.myfaces>4.0.1</version.org.apache.myfaces>
+        <version.org.jboss.arquillian.junit>1.7.0.Final</version.org.jboss.arquillian.junit>
         <version.org.jboss.jboss-dmr>1.6.1.Final</version.org.jboss.jboss-dmr>
-        <version.org.wildfly.jar.plugin>9.0.0.Final</version.org.wildfly.jar.plugin>
+        <version.org.wildfly.core>21.0.0.Beta2</version.org.wildfly.core>
         <version.org.wildfly.galleon-plugins>6.4.2.Final</version.org.wildfly.galleon-plugins>
-        <wildfly-extras.repo.scm.connection>git@github.com:wildfly-extras/wildfly-myfaces-galleon-pack.git</wildfly-extras.repo.scm.connection>
-        <wildfly-extras.repo.scm.url>https://github.com/wildfly-extras/wildfly-myfaces-galleon-pack</wildfly-extras.repo.scm.url>
+        <version.org.wildfly.jar.plugin>9.0.0.Final</version.org.wildfly.jar.plugin>
+        <version.org.wildfly>29.0.0.Beta1-SNAPSHOT</version.org.wildfly>
+
+        <wildfly-extras.repo.scm.connection>git@github.com:wildfly-extras/wildfly-myfaces-feature-pack.git</wildfly-extras.repo.scm.connection>
+        <wildfly-extras.repo.scm.url>https://github.com/wildfly-extras/wildfly-myfaces-feature-pack</wildfly-extras.repo.scm.url>
     </properties>
 
     <scm>
@@ -81,10 +84,8 @@
         <module>common</module>
         <module>myfaces-injection</module>
         <!--        <module>myfaces-preview-galleon-pack</module>-->
-        <module>myfaces-galleon-pack</module>
-        <!-- Disable testsuite for now until this all works manually
+        <module>myfaces-feature-pack</module>
         <module>testsuite</module>
-        -->
     </modules>
 
     <dependencyManagement>
@@ -119,7 +120,7 @@
 
             <dependency>
                 <groupId>org.wildfly</groupId>
-                <artifactId>wildfly-myfaces-galleon-pack-common</artifactId>
+                <artifactId>wildfly-myfaces-feature-pack-common</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
@@ -169,6 +170,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${version.junit}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-core</artifactId>
+                <scope>test</scope>
+                <version>${version.org.jboss.arquillian.junit}</version>
             </dependency>
 <!--
             <dependency>

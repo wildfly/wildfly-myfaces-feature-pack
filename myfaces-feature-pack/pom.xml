@@ -19,19 +19,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wildfly</groupId>
-        <artifactId>wildfly-myfaces-galleon-pack-parent</artifactId>
+        <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>wildfly-myfaces-galleon-pack</artifactId>
+    <artifactId>wildfly-myfaces-feature-pack</artifactId>
     <packaging>pom</packaging>
-    <name>MyFaces 4 Support for WildFly - Galleon Pack</name>
+    <name>MyFaces 4 Support for WildFly - Feature Pack</name>
   
-    <description>MyFaces 4 Support for WildFly - Galleon Pack</description>
+    <description>MyFaces 4 Support for WildFly - Feature Pack</description>
     
     <dependencies>
          <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>wildfly-myfaces-galleon-pack-common</artifactId>
+            <artifactId>wildfly-myfaces-feature-pack-common</artifactId>
             <type>pom</type>
         </dependency>
         <dependency>
@@ -72,7 +72,7 @@
                 <artifactId>wildfly-galleon-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>wildfly-myfaces-galleon-pack-build</id>
+                        <id>wildfly-myfaces-feature-pack-build</id>
                         <goals>
                             <goal>build-user-feature-pack</goal>
                         </goals>

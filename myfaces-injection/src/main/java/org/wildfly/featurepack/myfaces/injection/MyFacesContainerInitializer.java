@@ -17,7 +17,7 @@
  * MA  02110-1301, USA.
  */
 
-package org.jboss.as.jsf.myfaces.injection;
+package org.wildfly.featurepack.myfaces.injection;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;

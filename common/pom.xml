@@ -20,10 +20,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wildfly</groupId>
-        <artifactId>wildfly-myfaces-galleon-pack-parent</artifactId>
+        <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>wildfly-myfaces-galleon-pack-common</artifactId>
+    <artifactId>wildfly-myfaces-feature-pack-common</artifactId>
     <packaging>pom</packaging>
     <name>MyFaces 4 Support for WildFly</name>
 

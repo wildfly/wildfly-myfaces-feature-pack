@@ -23,28 +23,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wildfly</groupId>
-        <artifactId>wildfly-myfaces-galleon-pack-testsuite-parent</artifactId>
+        <artifactId>wildfly-myfaces-feature-pack-testsuite-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>wildfly-myfaces-galleon-pack-bootable-testsuite</artifactId>
+    <artifactId>wildfly-myfaces-feature-pack-bootable-testsuite</artifactId>
     <name>MyFaces 4 Support for WildFly - Bootable Testsuite</name>
     <description>MyFaces 4 Support for WildFly - Bootable Testsuite</description>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>wildfly-myfaces-galleon-pack</artifactId>
+            <artifactId>wildfly-myfaces-feature-pack</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>${project.groupId}</groupId>-->
-<!--            <artifactId>wildfly-myfaces-preview-galleon-pack</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <type>zip</type>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.wildfly.core</groupId>
             <artifactId>wildfly-core-test-runner</artifactId>
@@ -101,7 +94,7 @@
                                 </feature-pack>
                                 <feature-pack>
                                     <groupId>${project.groupId}</groupId>
-                                    <artifactId>wildfly-myfaces-galleon-pack</artifactId>
+                                    <artifactId>wildfly-myfaces-feature-pack</artifactId>
                                     <version>${project.version}</version>
                                 </feature-pack>
                             </feature-packs>
@@ -109,31 +102,6 @@
                             <output-file-name>${test.bootable.jar.name}</output-file-name>
                         </configuration>
                     </execution>
-<!--
-                    <execution>
-                        <id>build-preview-bootable-jar</id>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                        <phase>compile</phase>
-                        <configuration>
-                            <feature-packs>
-                                <feature-pack>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-preview-feature-pack</artifactId>
-                                    <version>${version.org.wildfly}</version>
-                                </feature-pack>
-                                <feature-pack>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>wildfly-myfaces-preview-galleon-pack</artifactId>
-                                    <version>${project.version}</version>
-                                </feature-pack>
-                            </feature-packs>
-                            <bootableJarBuildArtifacts>build-artifacts-preview</bootableJarBuildArtifacts>
-                            <output-file-name>${test.preview.bootable.jar.name}</output-file-name>
-                        </configuration>
-                    </execution>
--->
                 </executions>
             </plugin>
             <plugin>

@@ -53,7 +53,7 @@
 
     <provides>
         <service name="jakarta.servlet.ServletContainerInitializer">
-            <with-class name="org.jboss.as.jsf.myfaces.injection.MyFacesContainerInitializer"/>
+            <with-class name="org.wildfly.featurepack.myfaces.injection.MyFacesContainerInitializer"/>
         </service>
     </provides>
 </module>

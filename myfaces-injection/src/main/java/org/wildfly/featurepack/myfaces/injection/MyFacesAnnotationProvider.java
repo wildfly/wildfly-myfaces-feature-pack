@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.jboss.as.jsf.myfaces.injection;
+package org.wildfly.featurepack.myfaces.injection;
 
 import jakarta.faces.context.ExternalContext;
 import org.apache.myfaces.spi.AnnotationProvider;
