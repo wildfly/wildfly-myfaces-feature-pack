@@ -21,6 +21,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,7 +40,13 @@ public class SubsystemSanityTestCase {
     }
 
     @Test
-    public void testAllOk() {
-        // Nothing much is happening here yet - we just check we can load the class
+    public void testThatMyFacesApiIsAvailable() {
+        try {
+            // Pretty simple/dumb test to see if a MyFaces shared util class is available. This admittedly fragile,
+            // but it makes a nice, simple smoke test
+            Class.forName("org.apache.myfaces.core.api.shared.ComponentUtils");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("MyFaces class not found.");
+        }
     }
 }
