@@ -10,7 +10,7 @@
     </feature>
 
     <packages>
-        <package name="jakarta.faces.myfaces"/>
+        <package name="jakarta.faces.impl.myfaces"/>
         <package name="jakarta.faces.api.myfaces"/>
         <package name="org.jboss.as.jsf-injection.myfaces"/>
         <!--

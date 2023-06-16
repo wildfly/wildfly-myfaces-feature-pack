@@ -38,7 +38,7 @@
         <module name="jakarta.servlet.jstl.api" export="true"/>
         <module name="jakarta.validation.api" export="true"/>
 
-        <module name="jakarta.faces:myfaces"/>
+        <module name="jakarta.faces.impl:myfaces"/>
 
         <module name="java.desktop"/>
         <module name="java.logging"/>

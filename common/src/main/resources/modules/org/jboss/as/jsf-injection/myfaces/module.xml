@@ -34,7 +34,7 @@
     </resources>
 
     <dependencies>
-        <module name="jakarta.faces:myfaces"/>
+        <module name="jakarta.faces.impl:myfaces"/>
         <module name="jakarta.faces.api:myfaces"/>
 
         <module name="jakarta.enterprise.api"/>
