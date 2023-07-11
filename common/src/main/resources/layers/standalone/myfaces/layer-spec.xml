@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
-<layer-spec xmlns="urn:jboss:galleon:layer-spec:1.0" name="myfaces">
+<layer-spec xmlns="urn:jboss:galleon:layer-spec:2.0" name="myfaces">
+    <props>
+        <prop name="org.wildfly.rule.add-on" value="jsf,myfaces" />
+        <prop name="org.wildfly.rule.add-on-depends-on" value="only:jsf" />
+    </props>
     <dependencies>
         <layer name="cdi"/>
         <layer name="jsf"/>
