@@ -87,8 +87,8 @@
     </repositories>
 
     <modules>
-        <module>galleon-content</module>
         <module>myfaces-injection</module>
+        <module>galleon-content</module>
         <module>myfaces-feature-pack</module>
         <module>testsuite</module>
     </modules>
