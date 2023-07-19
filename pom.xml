@@ -51,7 +51,7 @@
         <version.org.wildfly.core>21.0.0.Beta2</version.org.wildfly.core>
         <version.org.wildfly.galleon-plugins>6.4.2.Final</version.org.wildfly.galleon-plugins>
         <version.org.wildfly.jar.plugin>10.0.0.Beta1</version.org.wildfly.jar.plugin>
-        <version.org.wildfly>29.0.0.Final-SNAPSHOT</version.org.wildfly>
+        <version.org.wildfly>29.0.0.Beta1</version.org.wildfly>
         <version.org.wildfly.plugin>4.2.0.Final</version.org.wildfly.plugin>
 
         <wildfly-extras.repo.scm.connection>
