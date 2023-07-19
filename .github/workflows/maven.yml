@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
 
       - name: Clean and build
-        run: mvn -B -fae clean package
+        run: mvn -B -fae clean install
 
       - name: Cache Maven packages
         uses: actions/cache/save@v3
