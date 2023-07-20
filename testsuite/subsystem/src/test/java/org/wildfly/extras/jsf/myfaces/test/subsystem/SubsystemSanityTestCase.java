@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.wildfly.extras.jsf.myfaces.test.subsystem;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -26,7 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author <a href="mailto:kabir.khan@jboss.com">Kabir Khan</a>
+ * @author <a href="mailto:jasondlee@redhat.com">Jason Lee</a>
  */
 @RunWith(Arquillian.class)
 public class SubsystemSanityTestCase {

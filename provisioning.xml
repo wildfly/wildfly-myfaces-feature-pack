@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
-  <feature-pack location="org.wildfly:wildfly-galleon-pack:29.0.0.Beta1-SNAPSHOT">
+  <feature-pack location="org.wildfly:wildfly-galleon-pack:29.0.0.Final">
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>
@@ -11,7 +11,6 @@
   <config model="standalone" name="standalone.xml">
     <layers>
       <!-- Base layer -->
-      <include name="management"/>
       <include name="myfaces"/>
     </layers>
   </config>

@@ -1,22 +1,19 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2021 Red Hat Inc. and/or its affiliates and other contributors
- * as indicated by the @author tags. All rights reserved.
- * See the copyright.txt in the distribution for a
- * full listing of individual contributors.
+ * Copyright 2023 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
  *
- * This copyrighted material is made available to anyone wishing to use,
- * modify, copy, or redistribute it subject to the terms and conditions
- * of the GNU Lesser General Public License, v. 2.1.
- * This program is distributed in the hope that it will be useful, but WITHOUT A
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
- * PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
- * You should have received a copy of the GNU Lesser General Public License,
- * v.2.1 along with this distribution; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA  02110-1301, USA.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package org.wildfly.extras.jsf.myfaces.injection;
 
 import jakarta.faces.component.FacesComponent;
@@ -36,15 +33,16 @@ import java.util.Set;
 
 /**
  * This class retrieves the annotation map from application scope.  This map was placed there by the JSFAnnotationProcessor
- * in the Jakarta Server Faces subsystem.
+ * in the Jakarta Faces subsystem.
  *
- * The class also reloads the map if needed.  The reason why the map must be reloaded is because the Jakarta Server Faces Annotation classes used as the map keys are always
- * loaded by the Jakarta Server Faces subsystem and thus always correspond to the default Jakarta Server Faces implementation.  If a different Jakarta Server Faces
- * implementation is used then the Jakarta Server Faces impl will be looking for the wrong version of the map keys.  So, we replace
- * the default implementations of the Jakarta Server Faces Annotation classes with whatever version the WAR is actually using.
+ * The class also reloads the map if needed.  The reason why the map must be reloaded is because the Jakarta Faces
+ * Annotation classes used as the map keys are always loaded by the Jakarta Faces subsystem and thus always correspond
+ * to the default Jakarta Faces implementation.  If a different Jakarta Faces * implementation is used then
+ * the Jakarta Faces impl will be looking for the wrong version of the map keys.  So, we replace the default
+ * implementations of the Jakarta Faces Annotation classes with whatever version the WAR is actually using.
  *
- * The reason this works is because we have a "slot" for jsf-injection for each Jakarta Server Faces implementation.  And jsf-injection
- * points to its corresponding Jakarta Server Faces impl/api slots.
+ * The reason this works is because we have a "slot" for jsf-injection for each Jakarta Faces implementation.
+ * And jsf-injection points to its corresponding Jakarta Faces impl/api slots.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2012 Red Hat Inc.
  */
@@ -58,7 +56,7 @@ public class AnnotationMap {
     private static final Map<String, Class<? extends Annotation>> stringToAnnoMap = new HashMap<String, Class<? extends Annotation>>();
 
     static {
-        // These classes need to be loaded in order!  Some can't be loaded if the Jakarta Server Faces version is too old.
+        // These classes need to be loaded in order!  Some can't be loaded if the Jakarta Faces version is too old.
 
         try { // all of the following classes are available from Faces 2.0 and Faces 2.1
             stringToAnnoMap.put(FacesComponent.class.getName(), FacesComponent.class);
@@ -69,7 +67,7 @@ public class AnnotationMap {
             stringToAnnoMap.put(FacesBehavior.class.getName(), FacesBehavior.class);
             stringToAnnoMap.put(FacesBehaviorRenderer.class.getName(), FacesBehaviorRenderer.class);
 
-            // Put Jakarta Server Faces 2.2+ annotations below this line if any new ones are to be scanned.
+            // Put Jakarta Faces 2.2+ annotations below this line if any new ones are to be scanned.
             // Load the class to avoid a NoClassDefFoundError if it is not present in the impl
             ClassLoader loader = AnnotationMap.class.getClassLoader();
             addAnnotationIfPresent(loader, "jakarta.faces.view.facelets.FaceletsResourceResolver");
@@ -88,7 +86,7 @@ public class AnnotationMap {
                 stringToAnnoMap.put(name, clazz);
             }
         } catch(ClassNotFoundException e) {
-            // ignore, annotation not found in the used Jakarta Server Faces version
+            // ignore, annotation not found in the used Jakarta Faces version
         }
     }
 
@@ -103,7 +101,8 @@ public class AnnotationMap {
     }
 
     public static Map<Class<? extends Annotation>, Set<Class<?>>> get(final ServletContext servletContext) {
-        Map<Class<? extends Annotation>, Set<Class<?>>> annotations = (Map<Class<? extends Annotation>, Set<Class<?>>>) servletContext.getAttribute(FACES_ANNOTATIONS_SC_ATTR);
+        Map<Class<? extends Annotation>, Set<Class<?>>> annotations =
+                (Map<Class<? extends Annotation>, Set<Class<?>>>) servletContext.getAttribute(FACES_ANNOTATIONS_SC_ATTR);
         if (servletContext.getAttribute(ANNOTATION_MAP_CONVERTED) != null) {
             return annotations;
         } else {
@@ -113,7 +112,7 @@ public class AnnotationMap {
     }
 
     private static Map<Class<? extends Annotation>, Set<Class<?>>> convert(Map<Class<? extends Annotation>, Set<Class<?>>> annotations) {
-        final Map<Class<? extends Annotation>, Set<Class<?>>> convertedAnnotatedClasses = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
+        final Map<Class<? extends Annotation>, Set<Class<?>>> convertedAnnotatedClasses = new HashMap<>();
         for (Map.Entry<Class<? extends Annotation>, Set<Class<?>>> entry : annotations.entrySet()) {
             final Class<? extends Annotation> annotation = entry.getKey();
             final Set<Class<?>> annotated = entry.getValue();

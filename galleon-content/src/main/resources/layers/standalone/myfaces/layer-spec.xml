@@ -13,10 +13,5 @@
         <package name="jakarta.faces.impl.myfaces"/>
         <package name="jakarta.faces.api.myfaces"/>
         <package name="org.jboss.as.jsf-injection.myfaces"/>
-        <!--
-
-                <package name="org.apache.myfaces.core.api"/>
-                <package name="org.apache.myfaces.core.impl"/>
-        -->
     </packages>
 </layer-spec>
