@@ -6,7 +6,7 @@
     </properties>
 
     <resources>
-        <artifact name="${org.wildfly:myfaces-injection}"/>
+        <artifact name="${org.wildfly:wildfly-myfaces-injection}"/>
     </resources>
 
     <dependencies>

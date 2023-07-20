@@ -23,7 +23,7 @@
         <artifactId>jboss-parent</artifactId>
         <version>39</version>
     </parent>
-    <groupId>org.wildfly</groupId>
+    <groupId>org.wildfly.extras</groupId>
     <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
     <version>1.0.0.Beta1</version>
     <packaging>pom</packaging>
@@ -50,8 +50,8 @@
         <version.org.jboss.jboss-dmr>1.6.1.Final</version.org.jboss.jboss-dmr>
         <version.org.wildfly.core>21.0.0.Beta2</version.org.wildfly.core>
         <version.org.wildfly.galleon-plugins>6.4.2.Final</version.org.wildfly.galleon-plugins>
-        <version.org.wildfly.jar.plugin>10.0.0.Beta1</version.org.wildfly.jar.plugin>
-        <version.org.wildfly>29.0.0.Beta1</version.org.wildfly>
+        <version.org.wildfly.jar.plugin>10.0.0.Final</version.org.wildfly.jar.plugin>
+        <version.org.wildfly>29.0.0.Final</version.org.wildfly>
         <version.org.wildfly.plugin>4.2.0.Final</version.org.wildfly.plugin>
 
         <wildfly-extras.repo.scm.connection>

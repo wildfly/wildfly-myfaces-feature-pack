@@ -52,7 +52,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>myfaces-injection</artifactId>
+            <artifactId>wildfly-myfaces-injection</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
