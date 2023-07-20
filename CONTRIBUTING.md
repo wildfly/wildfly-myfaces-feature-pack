@@ -1,7 +1,7 @@
-Contributing to WildFly Datasources Galleon feature-pack
+Contributing to WildFly MyFaces feature-pack
 ==================================
 
-Welcome to the WildFly Datasources Galleon feature-pack project! We welcome contributions from the community. 
+Welcome to the WildFly MyFaces feature-pack project! We welcome contributions from the community. 
 This guide will walk you through the steps for getting started on our project.
 
 - [Forking the Project](#forking-the-project)
