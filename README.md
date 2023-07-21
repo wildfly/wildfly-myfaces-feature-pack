@@ -35,7 +35,7 @@ You need to define a Galleon provisioning configuration file such as:
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>
-  <feature-pack location="org.wildfly:wildfly-myfaces-feature-pack:1.0.0.Beta1">
+  <feature-pack location="org.wildfly:wildfly-myfaces-feature-pack:1.0.0.Final-SNAPSHOT">
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>
