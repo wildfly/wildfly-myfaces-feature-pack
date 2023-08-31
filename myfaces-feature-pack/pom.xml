@@ -39,11 +39,18 @@
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-ee-galleon-pack</artifactId>
             <type>zip</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
     <properties>
         <common.resources.directory>${basedir}/../galleon-content/src/main/resources</common.resources.directory>
+        <license.directory>${project.build.directory}/resources/packages/docs.licenses/content/docs/licenses</license.directory>
     </properties>
     
     <build>                
@@ -78,6 +85,45 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-feature-pack-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+             <plugin>
+                <groupId>org.wildfly.maven.plugins</groupId>
+                <artifactId>licenses-plugin</artifactId>
+                <version>2.3.1.Final</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>update-licenses-xml</id>
+                        <goals>
+                            <goal>insert-versions</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <generateVersionProperty>true</generateVersionProperty>
+                            <sortByGroupIdAndArtifactId>true</sortByGroupIdAndArtifactId>
+                            <licensesConfigFiles>
+                                <licensesConfigFile>${basedir}/target/resources/license/licenses.xml</licensesConfigFile>
+                            </licensesConfigFiles>
+                            <licensesOutputFile>${license.directory}/wildfly-myfaces-feature-pack-licenses.xml</licensesOutputFile>
+                            <excludedArtifacts>wildfly-ee-galleon-pack|wildfly-myfaces-feature-pack-galleon-content\z</excludedArtifacts>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -92,6 +138,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <resources-dir>${basedir}/target/resources</resources-dir>
+                            <release-name>WildFly MyFaces feature pack</release-name>
                         </configuration>
                     </execution>
                 </executions>
