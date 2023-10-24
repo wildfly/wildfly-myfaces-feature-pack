@@ -3,6 +3,7 @@
     <props>
         <prop name="org.wildfly.rule.add-on" value="jsf,myfaces" />
         <prop name="org.wildfly.rule.add-on-depends-on" value="only:jsf" />
+        <prop name="org.wildfly.rule.add-on-description" value="Support for MyFaces." />
     </props>
     <dependencies>
         <layer name="cdi"/>
