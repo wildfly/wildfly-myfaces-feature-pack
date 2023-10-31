@@ -17,6 +17,7 @@
         <module name="jakarta.servlet.api"/>
         <module name="java.logging"/>
         <module name="java.naming"/>
+        <module name="java.sql"/>
 
         <module name="org.jboss.as.ee"/>
         <module name="org.jboss.as.jsf"/>
