@@ -20,8 +20,10 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>39</version>
+        <version>50</version>
+        <relativePath />
     </parent>
+
     <groupId>org.wildfly</groupId>
     <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
     <version>2.0.1.Final-SNAPSHOT</version>
@@ -29,6 +31,13 @@
     <name>MyFaces 4 Support for WildFly - Parent</name>
 
     <description>MyFaces 4 Support for WildFly - Parent</description>
+
+    <url>https://wildfly.org</url>
+
+    <organization>
+        <name>WildFly Community</name>
+        <url>https://wildfly.org</url>
+    </organization>
 
     <licenses>
         <license>
@@ -38,6 +47,27 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>wildfly.org</id>
+            <name>WildFly Community</name>
+            <organization>wildfly.org</organization>
+            <organizationUrl>https://wildfly.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:${wildfly-extras.repo.scm.connection}</connection>
+        <developerConnection>scm:git:${wildfly-extras.repo.scm.connection}</developerConnection>
+        <url>${wildfly-extras.repo.scm.url}</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GH</system>
+        <url>https://github.com/wildfly/wildfly-myfaces-feature-pack/issues</url>
+    </issueManagement>
+
     <properties>
         <!-- Require Java 11 -->
         <maven.compiler.target>11</maven.compiler.target>
@@ -45,14 +75,29 @@
 
         <version.junit>4.13.2</version.junit>
         <version.org.apache.myfaces>4.0.1</version.org.apache.myfaces>
+        <version.org.apache.myfaces>4.0.3</version.org.apache.myfaces>
 
-        <version.org.jboss.arquillian.junit>1.7.0.Final</version.org.jboss.arquillian.junit>
-        <version.org.jboss.jboss-dmr>1.6.1.Final</version.org.jboss.jboss-dmr>
-        <version.org.wildfly>30.0.0.Final</version.org.wildfly>
-        <version.org.wildfly.core>22.0.1.Final</version.org.wildfly.core>
-        <version.org.wildfly.galleon-plugins>8.0.0.Final</version.org.wildfly.galleon-plugins>
-        <version.org.wildfly.jar.plugin>12.0.0.Beta1</version.org.wildfly.jar.plugin>
-        <version.org.wildfly.plugin>5.1.0.Alpha1</version.org.wildfly.plugin>
+        <version.org.jboss.arquillian.junit>1.10.0.Final</version.org.jboss.arquillian.junit>
+        <version.org.jboss.jboss-dmr>1.7.0.Final</version.org.jboss.jboss-dmr>
+        <version.org.wildfly>38.0.0.Final</version.org.wildfly>
+        <version.org.wildfly.core>30.0.0.Final</version.org.wildfly.core>
+        <version.org.wildfly.galleon-plugins>8.0.2.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly.jar.plugin>12.0.0.Final</version.org.wildfly.jar.plugin>
+        <version.org.wildfly.plugin>5.1.2.Final</version.org.wildfly.plugin>
+
+        <!-- maven-release-plugin configuration -->
+        <autoVersionSubmodules>true</autoVersionSubmodules>
+        <releaseProfiles>jboss-release</releaseProfiles>
+        <signTag>true</signTag>
+        <tagNameFormat>@{project.version}</tagNameFormat>
+        <arguments>-DskipTests</arguments>
+        <!-- Do not push changes by default when using the maven-release-plugin:prepare -->
+        <pushChanges>false</pushChanges>
+        <!-- Use the local directory when using maven-release-plugin:perform -->
+        <localCheckout>true</localCheckout>
+        <!--JBoss Nexus properties -->
+        <nexus.repository.staging>wildfly-staging</nexus.repository.staging>
+        <nexus.staging.tag>wildfly-myfaces-feature-pack-${project.version}</nexus.staging.tag>
 
         <wildfly-extras.repo.scm.connection>
             git@github.com:wildfly-extras/wildfly-myfaces-feature-pack.git
@@ -61,13 +106,6 @@
             https://github.com/wildfly-extras/wildfly-myfaces-feature-pack
         </wildfly-extras.repo.scm.url>
     </properties>
-
-    <scm>
-        <connection>scm:git:${wildfly-extras.repo.scm.connection}</connection>
-        <developerConnection>scm:git:${wildfly-extras.repo.scm.connection}</developerConnection>
-        <url>${wildfly-extras.repo.scm.url}</url>
-        <tag>HEAD</tag>
-    </scm>
 
     <repositories>
         <repository>
