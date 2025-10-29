@@ -24,11 +24,11 @@
     </parent>
 
     <artifactId>wildfly-myfaces-feature-pack</artifactId>
-    <packaging>pom</packaging>
     <name>MyFaces 4 Support for WildFly - Feature Pack</name>
-  
     <description>MyFaces 4 Support for WildFly - Feature Pack</description>
-    
+
+    <packaging>pom</packaging>
+
     <dependencies>
          <dependency>
             <groupId>${project.groupId}</groupId>

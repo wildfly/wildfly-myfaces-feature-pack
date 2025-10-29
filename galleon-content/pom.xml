@@ -24,8 +24,8 @@
     </parent>
     <artifactId>wildfly-myfaces-feature-pack-galleon-content</artifactId>
     <packaging>pom</packaging>
-    <name>MyFaces 4 Support for WildFly</name>
 
+    <name>MyFaces 4 Support for WildFly</name>
     <description>MyFaces 4 Support for WildFly</description>
 
     <licenses>
