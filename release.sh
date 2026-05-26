@@ -7,7 +7,6 @@
 
 # Strict mode: fail on error, fail on unset vars, fail on pipe failure
 set -o errexit
-set -o nounset
 set -o pipefail
 
 # ============================================================================
