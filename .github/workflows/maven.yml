@@ -1,4 +1,4 @@
-name: Build and test feature pack
+name: Build and test feature-pack
 
 on:
   workflow_dispatch:

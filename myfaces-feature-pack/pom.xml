@@ -24,8 +24,8 @@
     </parent>
 
     <artifactId>wildfly-myfaces-feature-pack</artifactId>
-    <name>MyFaces 4.1 Support for WildFly - Feature Pack</name>
-    <description>MyFaces 4.1 Support for WildFly - Feature Pack</description>
+    <name>MyFaces 4.1 Support for WildFly - Feature-Pack</name>
+    <description>MyFaces 4.1 Support for WildFly - Feature-Pack</description>
 
     <packaging>pom</packaging>
 
@@ -138,7 +138,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <resources-dir>${basedir}/target/resources</resources-dir>
-                            <release-name>WildFly MyFaces feature pack</release-name>
+                            <release-name>WildFly MyFaces feature-pack</release-name>
                         </configuration>
                     </execution>
                 </executions>
