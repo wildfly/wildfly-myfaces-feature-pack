@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.wildfly</groupId>
         <artifactId>wildfly-myfaces-feature-pack-testsuite-parent</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.0.0.Final</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
