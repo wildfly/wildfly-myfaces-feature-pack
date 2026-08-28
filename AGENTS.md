@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a WildFly Galleon Feature-Pack that integrates Apache MyFaces 4.x as an alternative Jakarta Faces implementation for WildFly. When provisioned, it configures MyFaces as the default JSF implementation, replacing the standard Mojarra implementation.
+This is a WildFly Galleon Feature Pack that integrates Apache MyFaces 4.x as an alternative Jakarta Faces implementation for WildFly. When provisioned, it configures MyFaces as the default JSF implementation, replacing the standard Mojarra implementation.
 
 **Key Technologies:**
 - Java 11

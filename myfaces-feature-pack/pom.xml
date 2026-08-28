@@ -20,12 +20,12 @@
     <parent>
         <groupId>org.wildfly</groupId>
         <artifactId>wildfly-myfaces-feature-pack-parent</artifactId>
-        <version>3.0.0.Final</version>
+        <version>3.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>wildfly-myfaces-feature-pack</artifactId>
-    <name>MyFaces 4.1 Support for WildFly - Feature-Pack</name>
-    <description>MyFaces 4.1 Support for WildFly - Feature-Pack</description>
+    <name>MyFaces 4.1 Support for WildFly - Feature Pack</name>
+    <description>MyFaces 4.1 Support for WildFly - Feature Pack</description>
 
     <packaging>pom</packaging>
 
@@ -105,7 +105,7 @@
              <plugin>
                 <groupId>org.wildfly.maven.plugins</groupId>
                 <artifactId>licenses-plugin</artifactId>
-                <version>2.3.1.Final</version>
+                <version>2.4.6.Final</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
@@ -138,7 +138,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <resources-dir>${basedir}/target/resources</resources-dir>
-                            <release-name>WildFly MyFaces feature-pack</release-name>
+                            <release-name>WildFly MyFaces Feature Pack</release-name>
                         </configuration>
                     </execution>
                 </executions>
