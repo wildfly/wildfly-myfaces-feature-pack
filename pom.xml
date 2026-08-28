@@ -142,12 +142,6 @@
             <!-- WildFly dependencies -->
             <dependency>
                 <groupId>org.wildfly</groupId>
-                <artifactId>wildfly-ee-galleon-pack</artifactId>
-                <version>${version.org.wildfly}</version>
-                <type>zip</type>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly</groupId>
                 <artifactId>wildfly-ee-10-feature-pack</artifactId>
                 <version>${version.org.wildfly}</version>
                 <type>zip</type>

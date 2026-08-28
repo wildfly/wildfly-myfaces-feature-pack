@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-ee-galleon-pack</artifactId>
+            <artifactId>wildfly-ee-10-feature-pack</artifactId>
             <type>zip</type>
             <exclusions>
                 <exclusion>
