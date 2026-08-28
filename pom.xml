@@ -65,7 +65,7 @@
     </scm>
 
     <issueManagement>
-        <system>GH</system>
+        <system>GitHub</system>
         <url>https://github.com/wildfly/wildfly-myfaces-feature-pack/issues</url>
     </issueManagement>
 
@@ -81,11 +81,11 @@
         <plugin.fork.embedded>true</plugin.fork.embedded>
 
         <version.org.jboss.jboss-dmr>1.7.0.Final</version.org.jboss.jboss-dmr>
-        <version.org.wildfly>40.0.0.Final</version.org.wildfly>
-        <version.org.wildfly.core>32.0.0.Final</version.org.wildfly.core>
-        <version.org.wildfly.galleon-plugins>8.1.5.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly>41.0.1.Final</version.org.wildfly>
+        <version.org.wildfly.core>33.0.1.Final</version.org.wildfly.core>
+        <version.org.wildfly.galleon-plugins>8.1.7.Final</version.org.wildfly.galleon-plugins>
         <version.org.wildfly.jar.plugin>13.0.0.Final</version.org.wildfly.jar.plugin>
-        <version.org.wildfly.plugin>6.0.0.Final</version.org.wildfly.plugin>
+        <version.org.wildfly.plugin>6.0.1.Final</version.org.wildfly.plugin>
 
         <!-- maven-release-plugin configuration -->
         <autoVersionSubmodules>true</autoVersionSubmodules>
