@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
-  <feature-pack location="org.wildfly:wildfly-ee-10-feature-pack:40.0.0.Beta1">
+  <feature-pack location="org.wildfly:wildfly-ee-10-feature-pack:41.0.1.Final">
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>
-  <feature-pack location="org.wildfly:wildfly-myfaces-feature-pack:2.0.4.Final-SNAPSHOT">
+  <feature-pack location="org.wildfly:wildfly-myfaces-feature-pack:2.0.5-SNAPSHOT">
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>

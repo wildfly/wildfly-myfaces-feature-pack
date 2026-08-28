@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-ee-galleon-pack</artifactId>
+            <artifactId>wildfly-ee-10-feature-pack</artifactId>
             <type>zip</type>
             <exclusions>
                 <exclusion>
@@ -105,7 +105,7 @@
              <plugin>
                 <groupId>org.wildfly.maven.plugins</groupId>
                 <artifactId>licenses-plugin</artifactId>
-                <version>2.3.1.Final</version>
+                <version>2.4.6.Final</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>

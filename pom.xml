@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>51</version>
+        <version>52</version>
         <relativePath />
     </parent>
 
@@ -65,12 +65,11 @@
     </scm>
 
     <issueManagement>
-        <system>GH</system>
+        <system>GitHub</system>
         <url>https://github.com/wildfly/wildfly-myfaces-feature-pack/issues</url>
     </issueManagement>
 
     <properties>
-        <!-- Compile to Java 11 bytecode -->
         <maven.compiler.release>17</maven.compiler.release>
 
         <version.junit>4.13.2</version.junit>
@@ -81,25 +80,30 @@
         <plugin.fork.embedded>true</plugin.fork.embedded>
 
         <version.org.jboss.jboss-dmr>1.7.0.Final</version.org.jboss.jboss-dmr>
-        <version.org.wildfly>40.0.0.Final</version.org.wildfly>
-        <version.org.wildfly.core>32.0.0.Final</version.org.wildfly.core>
-        <version.org.wildfly.galleon-plugins>8.1.5.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly>41.0.1.Final</version.org.wildfly>
+        <version.org.wildfly.core>33.0.1.Final</version.org.wildfly.core>
+        <version.org.wildfly.galleon-plugins>8.1.7.Final</version.org.wildfly.galleon-plugins>
         <version.org.wildfly.jar.plugin>13.0.0.Final</version.org.wildfly.jar.plugin>
-        <version.org.wildfly.plugin>6.0.0.Final</version.org.wildfly.plugin>
+        <version.org.wildfly.plugin>6.0.1.Final</version.org.wildfly.plugin>
 
         <!-- maven-release-plugin configuration -->
         <autoVersionSubmodules>true</autoVersionSubmodules>
-        <releaseProfiles>jboss-release</releaseProfiles>
+        <preparationGoals>clean install</preparationGoals>
+        <preparationProfiles>release,central-release</preparationProfiles>
+        <releaseProfiles>${preparationProfiles}</releaseProfiles>
         <signTag>true</signTag>
         <tagNameFormat>@{project.version}</tagNameFormat>
-        <arguments>-DskipTests</arguments>
-        <!-- Do not push changes by default when using the maven-release-plugin:prepare -->
-        <pushChanges>false</pushChanges>
-        <!-- Use the local directory when using maven-release-plugin:perform -->
+        <arguments>-DskipTests -DpushChanges=${pushChanges} -Dcentral.autoPublish=${central.autoPublish}</arguments>
+        <!-- Push changes by default when using the maven-release-plugin:prepare -->
+        <pushChanges>true</pushChanges>
+        <!-- Use the local directory when using release:perform -->
         <localCheckout>true</localCheckout>
-        <!--JBoss Nexus properties -->
-        <nexus.repository.staging>wildfly-staging</nexus.repository.staging>
-        <nexus.staging.tag>wildfly-myfaces-feature-pack-${project.version}</nexus.staging.tag>
+        <!-- Maven Central properties -->
+        <central.sonatype.url>https://central.sonatype.com</central.sonatype.url>
+        <central.serverId>central</central.serverId>
+        <central.autoPublish>true</central.autoPublish>
+        <central.waitUntil>validated</central.waitUntil>
+        <central.skipPublishing>false</central.skipPublishing>
 
         <wildfly.repo.scm.connection>
             git@github.com:wildfly/wildfly-myfaces-feature-pack.git
@@ -136,12 +140,6 @@
     <dependencyManagement>
         <dependencies>
             <!-- WildFly dependencies -->
-            <dependency>
-                <groupId>org.wildfly</groupId>
-                <artifactId>wildfly-ee-galleon-pack</artifactId>
-                <version>${version.org.wildfly}</version>
-                <type>zip</type>
-            </dependency>
             <dependency>
                 <groupId>org.wildfly</groupId>
                 <artifactId>wildfly-ee-10-feature-pack</artifactId>
@@ -240,28 +238,6 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-maven-and-jdk</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>[3.9,)</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>[${maven.compiler.release},)</version>
-                                </requireJavaVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
