@@ -81,15 +81,16 @@ public class AnnotationMap {
 
     private static void addAnnotationIfPresent(ClassLoader loader, String name) {
         try {
-            Class clazz = loader.loadClass(name);
+            Class<?> clazz = loader.loadClass(name);
             if (Annotation.class.isAssignableFrom(clazz)) {
-                stringToAnnoMap.put(name, clazz);
+                stringToAnnoMap.put(name, clazz.asSubclass(Annotation.class));
             }
         } catch(ClassNotFoundException e) {
             // ignore, annotation not found in the used Jakarta Faces version
         }
     }
 
+    @SuppressWarnings("unchecked") // application-map values are stored as Object; cast is unavoidable due to erasure
     public static Map<Class<? extends Annotation>, Set<Class<?>>> get(final ExternalContext extContext) {
         Map<String, Object> appMap = extContext.getApplicationMap();
         if (appMap.get(ANNOTATION_MAP_CONVERTED) != null) {
@@ -100,6 +101,7 @@ public class AnnotationMap {
         }
     }
 
+    @SuppressWarnings("unchecked") // servlet-context attributes are stored as Object; cast is unavoidable due to erasure
     public static Map<Class<? extends Annotation>, Set<Class<?>>> get(final ServletContext servletContext) {
         Map<Class<? extends Annotation>, Set<Class<?>>> annotations =
                 (Map<Class<? extends Annotation>, Set<Class<?>>>) servletContext.getAttribute(FACES_ANNOTATIONS_SC_ATTR);

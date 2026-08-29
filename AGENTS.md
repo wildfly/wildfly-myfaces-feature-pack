@@ -2,12 +2,13 @@
 
 ## Project Overview
 
-This is a WildFly Galleon Feature Pack that integrates Apache MyFaces 4.x as an alternative Jakarta Faces implementation for WildFly. When provisioned, it configures MyFaces as the default JSF implementation, replacing the standard Mojarra implementation.
+This is a WildFly Galleon Feature Pack that integrates Apache MyFaces 4.1.x as an alternative Jakarta Faces implementation for WildFly. When provisioned, it configures MyFaces as the default JSF implementation, replacing the standard Mojarra implementation.
 
 **Key Technologies:**
-- Java 11
-- Maven 3.3.9+ (project uses Maven wrapper `./mvnw`)
-- WildFly 40.x / WildFly Core 32.x
+- Java 17 (`maven.compiler.release=17` in the root pom)
+- Maven 3.9+ (project ships the Maven wrapper `./mvnw`, currently 3.9.16)
+- `org.jboss:jboss-parent` 52 (parent POM)
+- WildFly 41.x / WildFly Core 33.x
 - Galleon (WildFly's provisioning system)
 - Apache MyFaces 4.1.x
 
@@ -40,7 +41,9 @@ Integration tests that provision WildFly with the MyFaces feature pack and valid
 - Bootable JAR (regular)
 - Bootable JAR (preview)
 
-All three modes are tested in parallel during `mvn test`.
+All three modes run during `mvn test` as three separate `maven-surefire-plugin`
+executions (`default-test`, `bootable-jar-test`, `preview-bootable-jar-test`) in
+the `testsuite/subsystem` module.
 
 ## Build Commands
 
@@ -76,41 +79,50 @@ Sets `default-jsf-impl-slot=myfaces` on the JSF subsystem, switching from Mojarr
 
 ## Release Process
 
-Uses `release.sh` script which wraps `mvn release:prepare release:perform`:
+Releases are driven entirely by the `maven-release-plugin`; JReleaser (configured
+in the `release` profile in `myfaces-feature-pack/pom.xml`) creates the GitHub
+release. There is no wrapper script.
 
 ```bash
 # Standard release
-./release.sh --release X.Y.Z.Final --development X.Y.Z+1-SNAPSHOT
+./mvnw release:clean release:prepare release:perform \
+    -DreleaseVersion=X.Y.Z.Final -DdevelopmentVersion=X.Y.Z+1-SNAPSHOT
 
-# Dry run
-./release.sh --release X.Y.Z.Final --development X.Y.Z+1-SNAPSHOT --dry-run
-
-# Prerelease (marks GitHub release accordingly)
-./release.sh --release X.Y.Z.Beta1 --development X.Y.Z-SNAPSHOT --prerelease
-
-# Force non-standard version patterns (e.g., SNAPSHOT release version)
-./release.sh --release X.Y.Z-SNAPSHOT --development X.Y.Z+1-SNAPSHOT --force
+# Dry run (nothing committed, tagged, pushed, deployed, or released)
+./mvnw release:clean release:prepare release:perform \
+    -DreleaseVersion=X.Y.Z.Final -DdevelopmentVersion=X.Y.Z+1-SNAPSHOT \
+    -DdryRun=true -DpushChanges=false -Djreleaser.dryrun=true
 ```
 
-**All flags:**
-| Flag | Description |
-|------|-------------|
-| `-r`, `--release` | Release version (required). Also used for the tag. |
-| `-d`, `--development` | Next development version (required). |
-| `--dry-run` | Nothing is updated or pushed. |
-| `-f`, `--force` | Allows SNAPSHOT in release version / non-SNAPSHOT in dev version. |
-| `-p`, `--prerelease` | Marks the GitHub release as a prerelease. |
-| `--notes-start-tag` | Starting tag for generating GitHub release notes. |
-| `-v`, `--verbose` | Verbose output. |
-| Any other args | Passed through to Maven. |
+`releaseVersion`/`developmentVersion` may be omitted to be prompted interactively.
+The git tag is derived automatically from `tagNameFormat` (`@{project.version}`,
+e.g. `3.0.0.Final`), so `-Dtag` is not needed.
 
-**Release workflow:**
-1. Validates release/dev versions (rejects SNAPSHOT release versions and non-SNAPSHOT dev versions unless `--force`)
-2. Resolves `central.serverId` from Maven config and verifies a matching `<server>` entry exists in `settings.xml`
-3. Cleans up the local Maven repo at `/tmp/m2/repository/<project>/` — removes directories older than 5 days (configurable via `DAYS` env var) and any SNAPSHOT directories
-4. Runs `./mvnw clean release:clean release:prepare release:perform` with profiles `release,central-release,cloud-tests` and a project-specific local repo
+**How it wires together (all configured in the POMs — see `preparationProfiles` /
+`releaseProfiles` / `arguments` in the root pom):**
+1. `release:prepare` runs `clean install`, bumps to the release version, creates
+   and pushes the signed tag, then bumps to the next `-SNAPSHOT`.
+2. `release:perform` checks out the tag and runs `deploy` with profiles
+   `release,central-release`:
+   - `central-release` (from jboss-parent): GPG-signs the Maven artifacts,
+     builds javadoc, and publishes to Maven Central via
+     `central-publishing-maven-plugin`.
+   - `release` (this project): JReleaser `full-release` creates the GitHub
+     release with a generated changelog and attaches + signs the feature pack ZIP.
+3. Prerelease status is detected automatically from the version qualifier
+   (`Alpha`/`Beta`/`CR`/`RC`/`Milestone`/`Preview`) — no manual flag.
 
-**Tag format:** `${RELEASE_VERSION}` (e.g., `3.0.0.Final`).
+**Prerequisites (all sourced from the environment / `settings.xml`, nothing in the POM):**
+| What | Where |
+|------|-------|
+| Maven Central credentials | `settings.xml` `<server id="central">` |
+| GPG key for Maven artifact signing | local GPG agent / `-Dgpg.passphrase` |
+| GitHub release token | `JRELEASER_GITHUB_TOKEN` env var |
+| GPG key for JReleaser asset signing | `JRELEASER_GPG_PASSPHRASE`, `JRELEASER_GPG_PUBLIC_KEY`, `JRELEASER_GPG_SECRET_KEY` env vars |
+
+> CI/clean-room note: to build against an isolated local repo, add
+> `-Dmaven.repo.local=/some/path`. (The old `release.sh` did this against
+> `/tmp/m2/repository/<project>/`; it is not required for a correct release.)
 
 ## Version Updates
 
@@ -133,7 +145,6 @@ The test harness uses `wildfly-core-test-runner` to manage server lifecycle.
 ## Branch Strategy
 
 - **master**: Main development branch
-- **3.0.x**: Current stable branch for 3.0.x releases
 - **2.0.x**: Maintenance branch (if needed)
 
 Tags follow the format: `X.Y.Z.Final` (e.g., `3.0.0.Final`).
