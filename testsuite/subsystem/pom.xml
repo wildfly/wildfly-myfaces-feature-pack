@@ -100,6 +100,7 @@
                                 <jboss-fork-embedded>true</jboss-fork-embedded>
                             </galleon-options>
                             <bootable-jar>false</bootable-jar>
+                            <skipDeployment>true</skipDeployment>
                             <provisioning-dir>${jboss.dist}</provisioning-dir>
                             <log-provisioning-time>true</log-provisioning-time>
                         </configuration>
@@ -119,6 +120,7 @@
                                 <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
                             </galleon-options>
                             <bootable-jar>true</bootable-jar>
+                            <skipDeployment>true</skipDeployment>
                             <provisioning-dir>server</provisioning-dir>
                             <bootable-jar-name>${test.bootable.jar.name}</bootable-jar-name>
                         </configuration>
@@ -138,6 +140,8 @@
                                 <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
                             </galleon-options>
                             <bootable-jar>true</bootable-jar>
+                            <skipDeployment>true</skipDeployment>
+                            <bootable-jar-install-artifact-classifier>bootable-preview</bootable-jar-install-artifact-classifier>
                             <provisioning-dir>preview-server</provisioning-dir>
                             <bootable-jar-name>${test.preview.bootable.jar.name}</bootable-jar-name>
                         </configuration>

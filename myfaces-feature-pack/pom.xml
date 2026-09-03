@@ -138,11 +138,104 @@
                         <phase>compile</phase>
                         <configuration>
                             <resources-dir>${basedir}/target/resources</resources-dir>
-                            <release-name>WildFly MyFaces feature pack</release-name>
+                            <release-name>WildFly MyFaces Feature Pack</release-name>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!--
+            Release profile. Activated by the maven-release-plugin during
+            release:prepare / release:perform, which pass -Prelease,central-release
+            (see preparationProfiles / releaseProfiles in the root pom).
+
+            Why this lives in the feature-pack module rather than the root:
+            jreleaser-maven-plugin's full-release goal is not an aggregator, so a
+            phase binding fires when *this* module reaches the phase. The aggregator
+            root is built first in the reactor, so binding there runs JReleaser
+            before the feature pack ZIP exists. Binding to this module's deploy phase
+            guarantees the ZIP (built in the compile phase above) is present when
+            JReleaser attaches and signs it. JReleaser resolves its basedir to the
+            reactor root, so the git repo, tag, and the glob below all resolve
+            against the project root regardless of which module triggers it.
+
+            Division of responsibilities:
+              * GPG signing of the Maven artifacts and publishing to Maven Central
+                are handled by jboss-parent's 'central-release' profile
+                (maven-gpg-plugin + central-publishing-maven-plugin), activated
+                reactor-wide via releaseProfiles.
+              * JReleaser (below) creates the GitHub release with a generated
+                changelog and attaches + signs the feature pack ZIP.
+
+            Nothing sensitive is hardcoded; every value is sourced externally:
+              * GitHub owner / name  -> auto-detected from the git 'origin' remote
+              * GitHub token         -> JRELEASER_GITHUB_TOKEN environment variable
+              * GPG passphrase / keys-> JRELEASER_GPG_PASSPHRASE / _PUBLIC_KEY / _SECRET_KEY
+        -->
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jreleaser</groupId>
+                        <artifactId>jreleaser-maven-plugin</artifactId>
+                        <version>${version.org.jreleaser}</version>
+                        <configuration>
+                            <jreleaser>
+                                <project>
+                                    <copyright>WildFly Community</copyright>
+                                </project>
+                                <signing>
+                                    <!-- Sign only on releases (skips SNAPSHOT versions). -->
+                                    <active>RELEASE</active>
+                                    <pgp>
+                                        <armored>true</armored>
+                                    </pgp>
+                                </signing>
+                                <release>
+                                    <github>
+                                        <!-- owner/name resolved from the git 'origin' remote. -->
+                                        <tagName>${project.version}</tagName>
+                                        <releaseName>${project.version}</releaseName>
+                                        <overwrite>false</overwrite>
+                                        <!-- Mark non-Final qualifiers (Alpha/Beta/CR/...) as prereleases. -->
+                                        <prerelease>
+                                            <pattern>.*[-.](Alpha|Beta|CR|RC|Milestone|Preview).*</pattern>
+                                        </prerelease>
+                                        <changelog>
+                                            <formatted>ALWAYS</formatted>
+                                            <preset>conventional-commits</preset>
+                                        </changelog>
+                                    </github>
+                                </release>
+                                <files>
+                                    <!-- Attach (and sign) the built feature pack as a release asset.
+                                         Path is relative to the reactor root (see basedir note above). -->
+                                    <globs>
+                                        <glob>
+                                            <pattern>myfaces-feature-pack/target/*.zip</pattern>
+                                        </glob>
+                                    </globs>
+                                </files>
+                            </jreleaser>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>jreleaser-full-release</id>
+                                <!-- deploy phase of this module: runs after the feature pack ZIP is
+                                     built and inside the release:perform checkout. -->
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>full-release</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
