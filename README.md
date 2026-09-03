@@ -1,11 +1,11 @@
 Galleon Feature Packs for integrating MyFaces 4.0 into WildFly and WildFly Preview
 ==================================================
 
-This feature pack for WildFly provides MyFaces 4.x support for WildFly. It will allow an administrator to deploy applications
-that depend upon -- or simply prefer -- MyFaces, which is configured as the default Jakarta Faces implementation once the
-feature pack is installed.
+This Feature Pack for WildFly provides MyFaces 4.0.x support for WildFly. It will allow an 
+administrator to deploy applications that depend upon -- or simply prefer -- MyFaces, which 
+is configured as the default Jakarta Faces implementation once the feature pack is installed.
 
-The MyFaces feature pack is to be provisioned along with the WildFly Galleon feature pack.
+The MyFaces Feature Pack is to be provisioned along with the WildFly Galleon feature pack.
 
 Resources:
 
@@ -17,12 +17,12 @@ Feature pack compatible with WildFly
 
 The Maven coordinates to use is: `org.wildfly:wildfly-myfaces-feature-pack:<version>`
 
-Using the MyFaces feature pack
+Using the MyFaces Feature Pack
 ==========================
 
 Provisioning of the MyFaces layer can be done in multiple ways according to the provisioning tooling in use.
 
-## Provisioning using CLI tool
+## Provisioning using the CLI tool
 
 You can download the latest Galleon CLI tool from the Galleon GitHub project [releases](https://github.com/wildfly/galleon/releases).
 
@@ -31,7 +31,7 @@ You need to define a Galleon provisioning configuration file such as:
 ```
 <?xml version="1.0" ?>
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
-  <feature-pack location="org.wildfly:wildfly-ee-10-feature-pack:40.0.0.Beta1">
+  <feature-pack location="org.wildfly:wildfly-ee-10-feature-pack:41.0.0.Final">
     <default-configs inherit="true"/>
     <packages inherit="true"/>
   </feature-pack>
@@ -60,13 +60,13 @@ galleon.sh provision provisioning.xml --dir=my-wildfly-server
 
 ## Provisioning using the [WildFly Maven Plugin](https://github.com/wildfly/wildfly-maven-plugin/) or the [WildFly JAR Maven plugin](https://github.com/wildfly/wildfly-jar-maven-plugin/)
 
-You need to include the MyFaces feature pack and layers in the Maven Plugin configuration. This looks like:
+You need to include the MyFaces Feature Pack and layers in the Maven Plugin configuration. This looks like:
 
 ```
 ...
 <feature-packs>
     <feature-pack>
-        <location>org.wildfly:wildfly-ee-10-feature-pack:40.0.0.Beta1</location>
+        <location>org.wildfly:wildfly-ee-10-feature-pack:41.0.0.Final</location>
     </feature-pack>
     <feature-pack>
         <location>org.wildfly:wildfly-myfaces-feature-pack:2.0.4.Final</location>

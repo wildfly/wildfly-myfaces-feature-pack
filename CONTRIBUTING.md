@@ -1,7 +1,7 @@
-Contributing to WildFly MyFaces feature-pack
+Contributing to WildFly MyFaces Feature Pack
 ==================================
 
-Welcome to the WildFly MyFaces feature-pack project! We welcome contributions from the community.
+Welcome to the WildFly MyFaces Feature Pack project! We welcome contributions from the community.
 This guide will walk you through the steps for getting started on our project.
 
 - [Legal](#legal)
