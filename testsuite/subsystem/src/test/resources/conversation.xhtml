@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:viewAction action="#{conversationBean.load}"/>
+    </f:metadata>
+    <h:head>
+        <title>MyFaces conversation integration</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h:outputText id="implementation" value="#{conversationBean.implementation}"/>
+            <h:outputText id="token" value="#{conversationBean.token}"/>
+            <h:outputText id="submissions" value="#{conversationBean.submissions}"/>
+            <h:outputText id="toggles" value="#{conversationBean.toggles}"/>
+            <h:outputText id="annotation" value="discovered" converter="annotationConverter"/>
+            <p:dataTable id="table" value="#{conversationBean.rows}" var="row" rowKey="#{row}">
+                <p:column>
+                    <p:rowToggler/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="Row #{row}"/>
+                </p:column>
+                <p:rowExpansion>
+                    <h:outputText value="Details for Row #{row}"/>
+                </p:rowExpansion>
+                <p:ajax event="rowToggle" listener="#{conversationBean.onRowToggle}"
+                        update="token toggles"/>
+            </p:dataTable>
+            <div id="repeat">
+                <ui:repeat value="#{conversationBean.repeatRows}" var="row">
+                    <h:outputText value="Repeat #{row}"/>
+                </ui:repeat>
+            </div>
+            <h:commandButton id="submit" value="Submit" action="#{conversationBean.submit}"/>
+        </h:form>
+    </h:body>
+</html>

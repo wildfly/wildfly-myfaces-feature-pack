@@ -24,6 +24,17 @@
             </licenses>
         </dependency>
         <dependency>
+            <groupId>org.jboss.weld.module</groupId>
+            <artifactId>weld-jsf</artifactId>
+            <licenses>
+                <license>
+                    <name>Apache License 2.0</name>
+                    <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+                    <distribution>repo</distribution>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-myfaces-injection</artifactId>
             <licenses>
