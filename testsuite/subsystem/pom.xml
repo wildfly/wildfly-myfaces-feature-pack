@@ -28,7 +28,53 @@
 
     <name>MyFaces 4.1 Support for WildFly - Subsystem Testsuite</name>
 
+    <properties>
+        <version.org.primefaces>15.0.16</version.org.primefaces>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logmanager</groupId>
+            <artifactId>commons-logging-jboss-logmanager</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-impl-base</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${version.org.primefaces}</version>
+            <classifier>jakarta</classifier>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>wildfly-myfaces-feature-pack</artifactId>
@@ -90,7 +136,7 @@
                         <goals>
                             <goal>package</goal>
                         </goals>
-                        <phase>compile</phase>
+                        <phase>process-test-classes</phase>
                         <configuration>
                             <layers>
                                 <layer>management</layer>
@@ -109,7 +155,7 @@
                         <goals>
                             <goal>package</goal>
                         </goals>
-                        <phase>compile</phase>
+                        <phase>process-test-classes</phase>
                         <configuration>
                             <layers>
                                 <layer>management</layer>
@@ -128,8 +174,20 @@
                         <goals>
                             <goal>package</goal>
                         </goals>
-                        <phase>compile</phase>
+                        <phase>process-test-classes</phase>
                         <configuration>
+                            <feature-packs combine.self="override">
+                                <feature-pack>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-preview-feature-pack</artifactId>
+                                    <version>${version.org.wildfly}</version>
+                                </feature-pack>
+                                <feature-pack>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>wildfly-myfaces-feature-pack</artifactId>
+                                    <version>${project.version}</version>
+                                </feature-pack>
+                            </feature-packs>
                             <layers>
                                 <layer>management</layer>
                                 <layer>myfaces</layer>
@@ -151,6 +209,7 @@
                     <failIfNoTests>false</failIfNoTests>
                     <redirectTestOutputToFile>${testLogToFile}</redirectTestOutputToFile>
                     <systemPropertyVariables>
+                        <test.server.product>WildFly EE</test.server.product>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <org.wildfly.test.kill-servers-before-test>${org.wildfly.test.kill-servers-before-test}</org.wildfly.test.kill-servers-before-test>
                     </systemPropertyVariables>
@@ -196,6 +255,7 @@
                         </goals>
                         <configuration>
                             <systemPropertyVariables>
+                                <test.server.product>WildFly Preview</test.server.product>
                                 <wildfly.bootable.jar>true</wildfly.bootable.jar>
                                 <wildfly.bootable.jar.jar>${project.build.directory}/${test.preview.bootable.jar.name}</wildfly.bootable.jar.jar>
                                 <wildfly.bootable.jar.install.dir>${project.build.directory}/preview-server</wildfly.bootable.jar.install.dir>
