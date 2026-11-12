@@ -77,3 +77,22 @@ You need to include the MyFaces Feature Pack and layers in the Maven Plugin conf
 </layers>
 ...
 ```
+
+## Testing
+
+Build and install the reactor artifacts before running the integration tests:
+
+```bash
+mvn clean install
+```
+
+The tests provision a standard server, a standard bootable JAR, and a WildFly Preview bootable JAR with the MyFaces feature
+pack. They deploy EAR fixtures using both `all` and `annotated` CDI bean discovery. Coverage includes PrimeFaces row
+expansion, full postbacks, conversation isolation, Faces converter discovery, `ui:repeat` rendering, and the server product
+identity. HtmlUnit executes the rendered PrimeFaces JavaScript without requiring an installed browser or driver.
+
+After the reactor artifacts are installed, rerun the integration class across all three server modes with:
+
+```bash
+mvn -pl testsuite/subsystem -Dtest=FacesIntegrationTestCase test
+```
